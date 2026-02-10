@@ -49,6 +49,23 @@
 ### 4) Optional free analytics
 - In Cloudflare Pages project, enable Web Analytics (free) from Analytics section.
 
+## Automation Added
+- Gate scripts:
+  - `scripts/check-disclosures.mjs`
+  - `scripts/check-citations.mjs`
+  - `scripts/check-duplication.mjs`
+  - `scripts/check-ymyl.mjs`
+- NPM gate commands in `package.json` (`npm run gates`)
+- CI workflow: `.github/workflows/gates.yml`
+- New planning docs:
+  - `content/plans/cluster-2-plan.md`
+  - `content/plans/cluster-2-research-shortlist.md`
+  - `command_center/qa-automation-checklist.md`
+
+## Cron Jobs Configured
+- Daily QA Sweep: `52c082c5-3f22-4c95-9a50-0e66d26dd22a`
+- Weekly Growth Planning: `4dfda425-34c8-4081-bb74-03a0725631b9`
+
 ## Notes
-- No publish/deploy was executed in this run.
-- Money pages are planned with compliance-first structure (disclosure above first affiliate link, no inline Amazon prices by default).
+- Site is live and gating baseline is now active.
+- Cluster #2 implementation is queued next.

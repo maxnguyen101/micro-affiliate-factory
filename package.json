@@ -6,7 +6,13 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "gate:build": "npm run build",
+    "gate:disclosure": "node scripts/check-disclosures.mjs",
+    "gate:citations": "node scripts/check-citations.mjs",
+    "gate:duplication": "node scripts/check-duplication.mjs",
+    "gate:ymyl": "node scripts/check-ymyl.mjs",
+    "gates": "npm run gate:build && npm run gate:disclosure && npm run gate:citations && npm run gate:duplication && npm run gate:ymyl"
   },
   "dependencies": {
     "astro": "^5.17.1"

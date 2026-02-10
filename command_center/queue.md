@@ -1,13 +1,15 @@
 # Queue
 
-## Ready (after A–D)
-1. Connect local repo to GitHub remote.
-2. Configure Cloudflare Pages (build command + output dir + branch deploy).
-3. Implement niche micro-tool page and client-side JS logic.
-4. Draft 3 money pages with disclosure block above first affiliate link.
-5. Draft 5 support pages.
-6. Run gates: citations, QA/compliance, duplication, Astro build/link checks.
+## In Progress
+1. Implement Cluster #2 content from `content/plans/cluster-2-plan.md`.
+2. Add richer citations and comparison depth to Cluster #1 money pages.
+
+## Completed
+- GitHub repo connected and deployment live on Cloudflare Worker.
+- Cluster #1 implemented (tool + 3 money + 5 support).
+- Affiliate tag wired (`microaffiliat-20`) on money pages.
+- Automated QA gates + CI workflow configured.
+- Recurring cron jobs configured for QA and planning.
 
 ## On Hold
-- Any outbound affiliate links until affiliate parameters are provided.
-- Any deployment until GitHub + Cloudflare settings are complete.
+- None.
