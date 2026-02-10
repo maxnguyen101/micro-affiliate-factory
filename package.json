@@ -4,7 +4,8 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "dashboard:data": "node scripts/build_dashboard_data.mjs",
+    "build": "npm run dashboard:data && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "gate:build": "npm run build",

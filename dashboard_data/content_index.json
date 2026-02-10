@@ -1,0 +1,260 @@
+{
+  "generatedAt": "2026-02-10T05:38:34.111Z",
+  "generatedAtLocal": "02/09/2026, 21:38:34",
+  "totalPages": 31,
+  "pages": [
+    {
+      "route": "/",
+      "source": "src/pages/index.astro",
+      "section": "home",
+      "type": "page",
+      "slug": "home"
+    },
+    {
+      "route": "/dashboard",
+      "source": "src/pages/dashboard.astro",
+      "section": "dashboard",
+      "type": "dashboard",
+      "slug": "dashboard"
+    },
+    {
+      "route": "/data/call-intelligence-feature-matrix",
+      "source": "src/pages/data/call-intelligence-feature-matrix.astro",
+      "section": "data",
+      "type": "data",
+      "slug": "call-intelligence-feature-matrix"
+    },
+    {
+      "route": "/data/outbound-stack-integration-coverage",
+      "source": "src/pages/data/outbound-stack-integration-coverage.astro",
+      "section": "data",
+      "type": "data",
+      "slug": "outbound-stack-integration-coverage"
+    },
+    {
+      "route": "/money/best-ai-sales-call-recording-tools-smb",
+      "source": "src/pages/money/best-ai-sales-call-recording-tools-smb.astro",
+      "section": "money",
+      "type": "money",
+      "slug": "best-ai-sales-call-recording-tools-smb"
+    },
+    {
+      "route": "/money/best-call-intelligence-tools-for-agencies",
+      "source": "src/pages/money/best-call-intelligence-tools-for-agencies.astro",
+      "section": "money",
+      "type": "money",
+      "slug": "best-call-intelligence-tools-for-agencies"
+    },
+    {
+      "route": "/money/best-helpdesk-live-chat-stack-for-small-teams",
+      "source": "src/pages/money/best-helpdesk-live-chat-stack-for-small-teams.astro",
+      "section": "money",
+      "type": "money",
+      "slug": "best-helpdesk-live-chat-stack-for-small-teams"
+    },
+    {
+      "route": "/money/best-helpdesk-stack-for-agencies-and-multi-brand-support",
+      "source": "src/pages/money/best-helpdesk-stack-for-agencies-and-multi-brand-support.astro",
+      "section": "money",
+      "type": "money",
+      "slug": "best-helpdesk-stack-for-agencies-and-multi-brand-support"
+    },
+    {
+      "route": "/money/best-outbound-stack-for-agencies",
+      "source": "src/pages/money/best-outbound-stack-for-agencies.astro",
+      "section": "money",
+      "type": "money",
+      "slug": "best-outbound-stack-for-agencies"
+    },
+    {
+      "route": "/money/best-outbound-stack-for-small-b2b-teams",
+      "source": "src/pages/money/best-outbound-stack-for-small-b2b-teams.astro",
+      "section": "money",
+      "type": "money",
+      "slug": "best-outbound-stack-for-small-b2b-teams"
+    },
+    {
+      "route": "/money/gong-vs-chorus-vs-avoma",
+      "source": "src/pages/money/gong-vs-chorus-vs-avoma.astro",
+      "section": "money",
+      "type": "money",
+      "slug": "gong-vs-chorus-vs-avoma"
+    },
+    {
+      "route": "/money/intercom-vs-freshdesk-vs-helpscout-for-growing-support-teams",
+      "source": "src/pages/money/intercom-vs-freshdesk-vs-helpscout-for-growing-support-teams.astro",
+      "section": "money",
+      "type": "money",
+      "slug": "intercom-vs-freshdesk-vs-helpscout-for-growing-support-teams"
+    },
+    {
+      "route": "/money/smartlead-vs-instantly-and-calendly-vs-chili-piper",
+      "source": "src/pages/money/smartlead-vs-instantly-and-calendly-vs-chili-piper.astro",
+      "section": "money",
+      "type": "money",
+      "slug": "smartlead-vs-instantly-and-calendly-vs-chili-piper"
+    },
+    {
+      "route": "/support/call-scoring-glossary",
+      "source": "src/pages/support/call-scoring-glossary.astro",
+      "section": "support",
+      "type": "support",
+      "slug": "call-scoring-glossary"
+    },
+    {
+      "route": "/support/common-outbound-stack-mistakes-and-fixes",
+      "source": "src/pages/support/common-outbound-stack-mistakes-and-fixes.astro",
+      "section": "support",
+      "type": "support",
+      "slug": "common-outbound-stack-mistakes-and-fixes"
+    },
+    {
+      "route": "/support/crm-compatibility-checklist",
+      "source": "src/pages/support/crm-compatibility-checklist.astro",
+      "section": "support",
+      "type": "support",
+      "slug": "crm-compatibility-checklist"
+    },
+    {
+      "route": "/support/crm-routing-checklist-for-sdr-teams",
+      "source": "src/pages/support/crm-routing-checklist-for-sdr-teams.astro",
+      "section": "support",
+      "type": "support",
+      "slug": "crm-routing-checklist-for-sdr-teams"
+    },
+    {
+      "route": "/support/domain-warmup-and-inbox-placement-basics",
+      "source": "src/pages/support/domain-warmup-and-inbox-placement-basics.astro",
+      "section": "support",
+      "type": "support",
+      "slug": "domain-warmup-and-inbox-placement-basics"
+    },
+    {
+      "route": "/support/helpdesk-migration-checklist-without-losing-context",
+      "source": "src/pages/support/helpdesk-migration-checklist-without-losing-context.astro",
+      "section": "support",
+      "type": "support",
+      "slug": "helpdesk-migration-checklist-without-losing-context"
+    },
+    {
+      "route": "/support/helpdesk-sla-policy-template-for-small-teams",
+      "source": "src/pages/support/helpdesk-sla-policy-template-for-small-teams.astro",
+      "section": "support",
+      "type": "support",
+      "slug": "helpdesk-sla-policy-template-for-small-teams"
+    },
+    {
+      "route": "/support/how-to-choose-call-recording-without-overbuying",
+      "source": "src/pages/support/how-to-choose-call-recording-without-overbuying.astro",
+      "section": "support",
+      "type": "support",
+      "slug": "how-to-choose-call-recording-without-overbuying"
+    },
+    {
+      "route": "/support/how-to-structure-reply-categories-for-fast-booking",
+      "source": "src/pages/support/how-to-structure-reply-categories-for-fast-booking.astro",
+      "section": "support",
+      "type": "support",
+      "slug": "how-to-structure-reply-categories-for-fast-booking"
+    },
+    {
+      "route": "/support/live-chat-escalation-rules-for-b2b-support",
+      "source": "src/pages/support/live-chat-escalation-rules-for-b2b-support.astro",
+      "section": "support",
+      "type": "support",
+      "slug": "live-chat-escalation-rules-for-b2b-support"
+    },
+    {
+      "route": "/support/mistakes-in-conversation-intelligence-rollouts",
+      "source": "src/pages/support/mistakes-in-conversation-intelligence-rollouts.astro",
+      "section": "support",
+      "type": "support",
+      "slug": "mistakes-in-conversation-intelligence-rollouts"
+    },
+    {
+      "route": "/support/scheduling-funnels-round-robin-vs-territory-rules",
+      "source": "src/pages/support/scheduling-funnels-round-robin-vs-territory-rules.astro",
+      "section": "support",
+      "type": "support",
+      "slug": "scheduling-funnels-round-robin-vs-territory-rules"
+    },
+    {
+      "route": "/support/shared-inbox-tagging-taxonomy-that-scales",
+      "source": "src/pages/support/shared-inbox-tagging-taxonomy-that-scales.astro",
+      "section": "support",
+      "type": "support",
+      "slug": "shared-inbox-tagging-taxonomy-that-scales"
+    },
+    {
+      "route": "/support/support-qa-scorecard-template-for-ticket-reviews",
+      "source": "src/pages/support/support-qa-scorecard-template-for-ticket-reviews.astro",
+      "section": "support",
+      "type": "support",
+      "slug": "support-qa-scorecard-template-for-ticket-reviews"
+    },
+    {
+      "route": "/support/troubleshooting-transcript-quality-and-adoption",
+      "source": "src/pages/support/troubleshooting-transcript-quality-and-adoption.astro",
+      "section": "support",
+      "type": "support",
+      "slug": "troubleshooting-transcript-quality-and-adoption"
+    },
+    {
+      "route": "/tools/outbound-stack-picker",
+      "source": "src/pages/tools/outbound-stack-picker.astro",
+      "section": "tools",
+      "type": "tool",
+      "slug": "outbound-stack-picker"
+    },
+    {
+      "route": "/tools/sales-call-intelligence-picker",
+      "source": "src/pages/tools/sales-call-intelligence-picker.astro",
+      "section": "tools",
+      "type": "tool",
+      "slug": "sales-call-intelligence-picker"
+    },
+    {
+      "route": "/tools/support-stack-picker",
+      "source": "src/pages/tools/support-stack-picker.astro",
+      "section": "tools",
+      "type": "tool",
+      "slug": "support-stack-picker"
+    }
+  ],
+  "artifacts": [
+    ".github/workflows/gates.yml",
+    "/",
+    "affiliate-microsites/",
+    "command_center/artifacts.md",
+    "command_center/logs.md",
+    "command_center/qa-automation-checklist.md",
+    "command_center/queue.md",
+    "command_center/status.md",
+    "content/briefs/money-pages.md",
+    "content/briefs/support-pages.md",
+    "content/plans/cluster-2-plan.md",
+    "content/plans/cluster-2-research-shortlist.md",
+    "content/plans/cluster-3-plan.md",
+    "content/plans/cluster-3-research-shortlist.md",
+    "content/plans/niche-candidates.md",
+    "content/plans/top-niche-cluster-plan.md",
+    "content/plans/top-niche-tool-spec.md",
+    "scripts/check-citations.mjs",
+    "scripts/check-disclosures.mjs",
+    "scripts/check-duplication.mjs",
+    "scripts/check-ymyl.mjs",
+    "scripts/install_cron.sh",
+    "scripts/run_manager.sh",
+    "src/pages/index.astro",
+    "src/pages/money/best-helpdesk-live-chat-stack-for-small-teams.astro",
+    "src/pages/money/best-helpdesk-stack-for-agencies-and-multi-brand-support.astro",
+    "src/pages/money/intercom-vs-freshdesk-vs-helpscout-for-growing-support-teams.astro",
+    "src/pages/support/helpdesk-migration-checklist-without-losing-context.astro",
+    "src/pages/support/helpdesk-sla-policy-template-for-small-teams.astro",
+    "src/pages/support/live-chat-escalation-rules-for-b2b-support.astro",
+    "src/pages/support/shared-inbox-tagging-taxonomy-that-scales.astro",
+    "src/pages/support/support-qa-scorecard-template-for-ticket-reviews.astro",
+    "src/pages/tools/outbound-stack-picker.astro",
+    "src/pages/tools/support-stack-picker.astro"
+  ]
+}

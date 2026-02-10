@@ -1,0 +1,345 @@
+---
+import { promises as fs } from 'node:fs';
+import path from 'node:path';
+
+const root = process.cwd();
+const dataDir = path.join(root, 'dashboard_data');
+
+async function readJson(name, fallback) {
+  try {
+    const content = await fs.readFile(path.join(dataDir, name), 'utf8');
+    return JSON.parse(content);
+  } catch {
+    return fallback;
+  }
+}
+
+const contentIndex = await readJson('content_index.json', { generatedAt: null, pages: [], artifacts: [] });
+const gates = await readJson('gates_last.json', { generatedAt: null, gates: [] });
+const analytics = await readJson('analytics_summary.json', { generatedAt: null, topPages: [], events: [], sources: [] });
+const deploy = await readJson('deploy_state.json', { generatedAt: null });
+const runs = await readJson('runs.json', { generatedAt: null, timeline: [], queue: {}, systemsStatus: {} });
+
+const token = import.meta.env.PUBLIC_DASHBOARD_TOKEN || '';
+const payload = { contentIndex, gates, analytics, deploy, runs };
+const lastUpdated = [contentIndex.generatedAt, gates.generatedAt, analytics.generatedAt, deploy.generatedAt, runs.generatedAt]
+  .filter(Boolean)
+  .sort()
+  .at(-1) || null;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Operations Dashboard</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0a0e17;
+        --panel: #11192b;
+        --panel-2: #17243b;
+        --muted: #9cb3d7;
+        --text: #e8f0ff;
+        --ok: #21c77a;
+        --warn: #ffba4a;
+        --danger: #ff6673;
+        --accent: #7ba2ff;
+        --border: #253756;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        background: radial-gradient(circle at top left, #1a2a45, #0a0e17 45%);
+        color: var(--text);
+      }
+      .wrap { max-width: 1200px; margin: 0 auto; padding: 24px 16px 48px; }
+      h1, h2, h3 { margin: 0 0 10px; }
+      p { margin: 0; color: var(--muted); }
+      .top {
+        display: flex; gap: 12px; flex-wrap: wrap; justify-content: space-between; align-items: end;
+        margin-bottom: 20px;
+      }
+      .kpis { display: grid; grid-template-columns: repeat(4, minmax(120px, 1fr)); gap: 10px; width: 100%; }
+      .kpi {
+        border: 1px solid var(--border); background: rgba(17,25,43,.9); border-radius: 12px; padding: 12px;
+      }
+      .kpi b { display:block; font-size: 1.2rem; margin-top: 4px; }
+      .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 12px; }
+      .card {
+        border: 1px solid var(--border);
+        background: linear-gradient(180deg, var(--panel), var(--panel-2));
+        border-radius: 14px;
+        padding: 14px;
+        min-height: 120px;
+      }
+      .span-12 { grid-column: span 12; }
+      .span-8 { grid-column: span 8; }
+      .span-6 { grid-column: span 6; }
+      .span-4 { grid-column: span 4; }
+      ul { margin: 8px 0 0; padding-left: 18px; }
+      li { margin: 4px 0; color: #d8e6ff; }
+      .muted { color: var(--muted); font-size: .95rem; }
+      .chip {
+        display: inline-block;
+        border: 1px solid var(--border);
+        padding: 4px 8px;
+        border-radius: 999px;
+        font-size: .8rem;
+        margin-right: 6px;
+      }
+      .status-ok { color: var(--ok); }
+      .status-warn { color: var(--warn); }
+      .status-danger { color: var(--danger); }
+      .toolbar { display:flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+      input, select, button {
+        background: #0f1627;
+        color: var(--text);
+        border: 1px solid var(--border);
+        padding: 8px 10px;
+        border-radius: 10px;
+      }
+      button { cursor: pointer; }
+      table { width:100%; border-collapse: collapse; margin-top: 10px; }
+      th, td { border-bottom: 1px solid var(--border); padding: 8px 6px; text-align: left; font-size: .92rem; }
+      .commands button { margin: 6px 6px 0 0; }
+      .token-gate {
+        position: fixed; inset: 0; background: rgba(6,10,19,.95); z-index: 20;
+        display: flex; align-items: center; justify-content: center;
+      }
+      .token-panel {
+        width: min(480px, 92vw);
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 18px;
+      }
+      .tiny { font-size: .8rem; color: var(--muted); margin-top: 8px; }
+      @media (max-width: 900px) {
+        .kpis { grid-template-columns: repeat(2, minmax(120px, 1fr)); }
+        .span-8, .span-6, .span-4 { grid-column: span 12; }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="tokenGate" class="token-gate" style={token ? '' : 'display:none'}>
+      <div class="token-panel">
+        <h2>Dashboard Access</h2>
+        <p>Enter the dashboard token.</p>
+        <div class="toolbar">
+          <input id="tokenInput" type="password" placeholder="Token" />
+          <button id="tokenBtn">Unlock</button>
+        </div>
+        <p id="tokenErr" class="tiny"></p>
+        <p class="tiny">Client-side gate only (obscurity, not security).</p>
+      </div>
+    </div>
+
+    <main class="wrap" id="app" style={token ? 'visibility:hidden' : ''}>
+      <section class="top">
+        <div>
+          <h1>Operations Dashboard</h1>
+          <p>Last updated: <span id="lastUpdated">{lastUpdated || 'n/a'}</span> · Auto-refresh every 60s</p>
+        </div>
+      </section>
+
+      <section class="kpis">
+        <div class="kpi"><span class="muted">Total Pages</span><b>{contentIndex.totalPages ?? 0}</b></div>
+        <div class="kpi"><span class="muted">Queue (In Progress)</span><b>{runs.queue?.inProgress?.length ?? 0}</b></div>
+        <div class="kpi"><span class="muted">Log Entries</span><b>{runs.timeline?.length ?? 0}</b></div>
+        <div class="kpi"><span class="muted">Analytics Pages</span><b>{analytics.topPages?.length ?? 0}</b></div>
+      </section>
+
+      <section class="grid" style="margin-top:12px;">
+        <article class="card span-4">
+          <h2>Systems Status</h2>
+          <ul>
+            <li>Stage: <span class="chip">{runs.systemsStatus?.currentStage || 'Unknown'}</span></li>
+            <li>Active niche: {runs.systemsStatus?.activeNiche || 'Unknown'}</li>
+            <li>Next action: {runs.systemsStatus?.nextAction || 'None set'}</li>
+            <li>Publish state: {runs.systemsStatus?.publishState || 'Unknown'}</li>
+          </ul>
+        </article>
+
+        <article class="card span-4">
+          <h2>Task Queue</h2>
+          <h3 class="muted">In Progress</h3>
+          <ul>{(runs.queue?.inProgress?.length ? runs.queue.inProgress : ['No tasks in progress']).map((i) => <li>{i}</li>)}</ul>
+          <h3 class="muted" style="margin-top:8px;">On Hold</h3>
+          <ul>{(runs.queue?.onHold?.length ? runs.queue.onHold : ['No blocked tasks']).map((i) => <li>{i}</li>)}</ul>
+        </article>
+
+        <article class="card span-4">
+          <h2>Deploy Snapshot</h2>
+          <ul>
+            <li>Branch: {deploy.branch || 'n/a'}</li>
+            <li>Commit: {deploy.commit || 'n/a'}</li>
+            <li><a href={deploy.remote || '#'} style="color:var(--accent)">Remote repo</a></li>
+            <li>Dashboard: <a href="/dashboard" style="color:var(--accent)">/dashboard</a></li>
+          </ul>
+        </article>
+
+        <article class="card span-8">
+          <h2>Content Inventory</h2>
+          <div class="toolbar">
+            <input id="search" placeholder="Search route or source..." />
+            <select id="typeFilter">
+              <option value="">All types</option>
+              <option value="money">money</option>
+              <option value="support">support</option>
+              <option value="tool">tool</option>
+              <option value="data">data</option>
+              <option value="dashboard">dashboard</option>
+              <option value="page">page</option>
+            </select>
+            <select id="sortBy">
+              <option value="route">Sort: route</option>
+              <option value="type">Sort: type</option>
+              <option value="section">Sort: section</option>
+            </select>
+          </div>
+          <table>
+            <thead><tr><th>Route</th><th>Type</th><th>Section</th><th>Source</th></tr></thead>
+            <tbody id="contentRows"></tbody>
+          </table>
+        </article>
+
+        <article class="card span-4">
+          <h2>Gates Detail</h2>
+          <ul>
+            {(gates.gates?.length ? gates.gates : [{ name: 'none', status: 'unknown', command: '-' }]).map((g) => (
+              <li>
+                <span class={`chip ${g.status === 'pass' ? 'status-ok' : g.status === 'fail' ? 'status-danger' : 'status-warn'}`}>{g.status || 'unknown'}</span>
+                {g.name} <span class="muted">({g.command})</span>
+              </li>
+            ))}
+          </ul>
+        </article>
+
+        <article class="card span-6">
+          <h2>Logs Timeline</h2>
+          <ul>
+            {(runs.timeline?.length ? runs.timeline.slice(0, 8) : [{ title: 'No logs found', notes: [] }]).map((entry) => (
+              <li>
+                <strong>{entry.title}</strong>
+                <ul>
+                  {(entry.notes?.length ? entry.notes.slice(0, 3) : ['No notes']).map((n) => <li>{n}</li>)}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        </article>
+
+        <article class="card span-6">
+          <h2>Analytics Overview</h2>
+          <p class="muted">Generated: {analytics.generatedAt || 'n/a'}</p>
+          <h3 class="muted" style="margin-top:8px;">Top Pages</h3>
+          <ul>{(analytics.topPages?.length ? analytics.topPages.slice(0, 5).map((p) => `${p.page || p.path || 'unknown'} (${p.views || p.value || 0})`) : ['No analytics data yet']).map((x) => <li>{x}</li>)}</ul>
+          <h3 class="muted" style="margin-top:8px;">Events</h3>
+          <ul>{(analytics.events?.length ? analytics.events.slice(0, 5).map((e) => `${e.event || e.name || 'event'} (${e.count || e.value || 0})`) : ['No event data yet']).map((x) => <li>{x}</li>)}</ul>
+        </article>
+
+        <article class="card span-6">
+          <h2>SEO / Indexing</h2>
+          <p class="muted">Placeholder block for Search Console + indexing metrics.</p>
+          <ul>
+            <li>robots.txt: present</li>
+            <li>sitemap.xml: present</li>
+            <li>TODO: ingest indexed URL count and crawl errors</li>
+          </ul>
+        </article>
+
+        <article class="card span-6 commands">
+          <h2>One-Click Copy Commands</h2>
+          <button data-copy="npm run dashboard:data">Copy: dashboard data build</button>
+          <button data-copy="npm run build">Copy: build</button>
+          <button data-copy="npm run gates">Copy: full gates</button>
+          <button data-copy="git pull --rebase origin main && git push origin main">Copy: sync + push</button>
+          <p class="tiny" id="copyStatus">Click a button to copy.</p>
+        </article>
+      </section>
+    </main>
+
+    <script define:vars={{ payload, token }}>
+      const pages = payload?.contentIndex?.pages || [];
+      const rows = document.getElementById('contentRows');
+      const search = document.getElementById('search');
+      const typeFilter = document.getElementById('typeFilter');
+      const sortBy = document.getElementById('sortBy');
+
+      function renderRows() {
+        if (!rows) return;
+        const term = (search?.value || '').toLowerCase();
+        const type = typeFilter?.value || '';
+        const sort = sortBy?.value || 'route';
+
+        const filtered = pages
+          .filter((p) => !type || p.type === type)
+          .filter((p) => {
+            const hay = `${p.route} ${p.source} ${p.type} ${p.section}`.toLowerCase();
+            return !term || hay.includes(term);
+          })
+          .sort((a, b) => `${a[sort] || ''}`.localeCompare(`${b[sort] || ''}`));
+
+        if (!filtered.length) {
+          rows.innerHTML = '<tr><td colspan="4" class="muted">No matching content.</td></tr>';
+          return;
+        }
+
+        rows.innerHTML = filtered
+          .map((p) => `<tr><td>${p.route}</td><td>${p.type}</td><td>${p.section}</td><td>${p.source}</td></tr>`)
+          .join('');
+      }
+
+      [search, typeFilter, sortBy].forEach((el) => el && el.addEventListener('input', renderRows));
+      renderRows();
+
+      document.querySelectorAll('[data-copy]').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          const text = btn.getAttribute('data-copy') || '';
+          try {
+            await navigator.clipboard.writeText(text);
+            const status = document.getElementById('copyStatus');
+            if (status) status.textContent = `Copied: ${text}`;
+          } catch {
+            const status = document.getElementById('copyStatus');
+            if (status) status.textContent = 'Copy failed. Clipboard permissions may be blocked.';
+          }
+        });
+      });
+
+      setInterval(() => window.location.reload(), 60000);
+
+      if (token) {
+        const gate = document.getElementById('tokenGate');
+        const input = document.getElementById('tokenInput');
+        const btn = document.getElementById('tokenBtn');
+        const err = document.getElementById('tokenErr');
+        const app = document.getElementById('app');
+
+        const unlock = () => {
+          const val = input?.value || '';
+          if (val === token) {
+            if (gate) gate.style.display = 'none';
+            if (app) app.style.visibility = 'visible';
+            sessionStorage.setItem('dashboard_ok', '1');
+          } else if (err) {
+            err.textContent = 'Invalid token.';
+          }
+        };
+
+        if (sessionStorage.getItem('dashboard_ok') === '1') {
+          if (gate) gate.style.display = 'none';
+          if (app) app.style.visibility = 'visible';
+        }
+
+        btn?.addEventListener('click', unlock);
+        input?.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') unlock();
+        });
+      }
+    </script>
+  </body>
+</html>

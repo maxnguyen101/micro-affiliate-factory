@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-02-10T05:38:34.111Z",
+  "gates": [
+    {
+      "name": "build",
+      "command": "npm run build",
+      "status": "unknown"
+    },
+    {
+      "name": "disclosure",
+      "command": "npm run gate:disclosure",
+      "status": "unknown"
+    },
+    {
+      "name": "citations",
+      "command": "npm run gate:citations",
+      "status": "unknown"
+    },
+    {
+      "name": "duplication",
+      "command": "npm run gate:duplication",
+      "status": "unknown"
+    },
+    {
+      "name": "ymyl",
+      "command": "npm run gate:ymyl",
+      "status": "unknown"
+    }
+  ],
+  "note": "Gate statuses are placeholders unless a gate runner writes results."
+}
