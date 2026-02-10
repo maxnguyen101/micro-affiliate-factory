@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://micro-affiliate-factory.howtopc2101.workers.dev/sitemap.xml
