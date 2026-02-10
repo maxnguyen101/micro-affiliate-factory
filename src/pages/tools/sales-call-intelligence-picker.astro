@@ -35,6 +35,7 @@ import rules from '../../data/tool-rules/sales-call-intelligence.json';
   <button type="submit">Get shortlist</button>
 </form>
 <div id="out"><em>Submit to see results.</em></div>
+<p><small>Disclosure: this recommendation tool is informational and does not guarantee sales outcomes or ROI.</small></p>
 <p><a href="/money/best-ai-sales-call-recording-tools-smb">Go to SMB money page</a></p>
 <script type="module" define:vars={{ rules }}>
 const form = document.getElementById('picker');
@@ -61,17 +62,13 @@ form.addEventListener('submit', (e) => {
   }
 
   const top = scores.sort((a,b)=>b.score-a.score).slice(0,3);
-  out.innerHTML = `<h3>Top fits</h3><ol>${top.map(t => `<li><strong>${t.name}</strong> — ${t.why.slice(0,2).join(' · ') || 'Balanced fit by your criteria'}</li>`).join('')}</ol><p><strong>Next step:</strong> compare options on the <a href='/money/gong-vs-chorus-vs-avoma'>comparison page</a>.</p>`;
+  out.innerHTML = `<h3>Top fits</h3><ol>${top.map(t => `<li><strong>${t.name}</strong> — ${t.why.slice(0,2).join(' · ') || 'Balanced fit by your criteria'}</li>`).join('')}</ol><p><strong>Next step:</strong> compare options on the <a href='/money/gong-vs-chorus-vs-avoma'>comparison page</a>.</p><p><strong>Demo prep:</strong> use the <a href='/data/vendor-stack-evaluation-checklist-download'>vendor evaluation checklist download</a>.</p>`;
   if (typeof gtag === 'function') {
     gtag('event', 'tool_complete', { tool_name: 'sales_call_intelligence_picker' });
   }
 });
 </script>
 
-<section class="card"><h3>Related guides</h3><ul><li><a href="/">Home hub</a></li><li><a href="/tools/sales-call-intelligence-picker">Call Intelligence Tool</a></li><li><a href="/tools/outbound-stack-picker">Outbound Stack Tool</a></li><li><a href="/data/call-intelligence-feature-matrix">Call Intelligence Matrix</a></li><li><a href="/data/outbound-stack-integration-coverage">Outbound Integration Table</a></li></ul></section>
-
-<section class="card"><h3>Embed this tool</h3><p>Copy/paste:</p><pre>&lt;iframe src="https://micro-affiliate-factory.howtopc2101.workers.dev/tools/sales-call-intelligence-picker/" width="100%" height="760" loading="lazy"&gt;&lt;/iframe&gt;</pre><p>Citation: If you use this tool, attribute to Micro Affiliate Factory with a link to this page.</p></section>
-<footer>Micro Affiliate Factory</footer></main>
 <section class="card"><h3>Related guides</h3><ul><li><a href="/">Home hub</a></li><li><a href="/tools/sales-call-intelligence-picker">Call Intelligence Tool</a></li><li><a href="/tools/outbound-stack-picker">Outbound Stack Tool</a></li><li><a href="/data/call-intelligence-feature-matrix">Call Intelligence Matrix</a></li><li><a href="/data/outbound-stack-integration-coverage">Outbound Integration Table</a></li></ul></section>
 
 <section class="card"><h3>Embed this tool</h3><p>Copy/paste:</p><pre>&lt;iframe src="https://micro-affiliate-factory.howtopc2101.workers.dev/tools/sales-call-intelligence-picker/" width="100%" height="760" loading="lazy"&gt;&lt;/iframe&gt;</pre><p>Citation: If you use this tool, attribute to Micro Affiliate Factory with a link to this page.</p></section>

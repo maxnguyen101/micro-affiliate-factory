@@ -28,6 +28,7 @@ const profiles = [
 </div>
 <p><button id="run">Get support stack profile</button></p>
 <div id="out" class="card"><em>No profile yet.</em></div>
+<p><small>Disclosure: recommendations are for education and planning. Final fit depends on your workflows, budget, and security/compliance requirements.</small></p>
 
 <script define:vars={{ profiles }}>
 const out = document.getElementById('out');
@@ -51,7 +52,7 @@ document.getElementById('run').addEventListener('click', () => {
     multi: '/money/best-helpdesk-stack-for-agencies-and-multi-brand-support'
   };
 
-  out.innerHTML = `<h3>${top.label}</h3><p>Best fit based on your team shape, channel mix, and SLA constraints.</p><p><a href="${links[top.id]}">Go to matching comparison page →</a></p>`;
+  out.innerHTML = `<h3>${top.label}</h3><p>Best fit based on your team shape, channel mix, and SLA constraints.</p><p><strong>Primary comparison:</strong> <a href="${links[top.id]}">Go to matching comparison page →</a></p><p><strong>Implementation prep:</strong> copy the <a href='/data/vendor-stack-evaluation-checklist-download'>vendor evaluation checklist</a> before demos.</p>`;
   if (typeof gtag === 'function') gtag('event', 'tool_complete', { tool_name: 'support_stack_picker', profile: top.id });
 });
 </script>

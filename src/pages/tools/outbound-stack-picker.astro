@@ -35,6 +35,7 @@ const profiles = [
 </div>
 <p><button id="run">Get stack profile</button></p>
 <div id="out" class="card"><em>No profile yet.</em></div>
+<p><small>Disclosure: this tool gives an editorial recommendation path, not a guarantee of outcomes. Validate deliverability and compliance settings before buying.</small></p>
 <script define:vars={{ profiles }}>
 const out = document.getElementById('out');
 document.getElementById('run').addEventListener('click', () => {
@@ -50,7 +51,7 @@ document.getElementById('run').addEventListener('click', () => {
     growth: '/money/smartlead-vs-instantly-and-calendly-vs-chili-piper',
     agency: '/money/best-outbound-stack-for-agencies'
   };
-  out.innerHTML = `<h3>${top.label}</h3><p>Best fit based on your routing + volume + budget signals.</p><p><a href="${links[top.id]}">Go to matching comparison page →</a></p>`;
+  out.innerHTML = `<h3>${top.label}</h3><p>Best fit based on your routing + volume + budget signals.</p><p><strong>Primary comparison:</strong> <a href="${links[top.id]}">Go to matching comparison page →</a></p><p><strong>Before you buy:</strong> validate assumptions in the <a href='/data/vendor-stack-evaluation-checklist-download'>vendor evaluation checklist</a>.</p>`;
   if (typeof gtag === 'function') {
     gtag('event', 'tool_complete', { tool_name: 'outbound_stack_picker', profile: top.id });
   }

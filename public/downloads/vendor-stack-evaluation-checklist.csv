@@ -1,0 +1,9 @@
+Category,Evaluation Question,Pass/Fail,Notes
+CRM Fit,"Does the tool sync owners, pipeline stage, activity timeline, and notes bi-directionally?",,
+Workflow Overhead,"Can RevOps/CX admins maintain routing and scoring rules without engineering support?",,
+Reporting,"Can we segment adoption and impact by team/region and export raw data?",,
+Security & Compliance,"Are consent, retention, and role-based access controls documented and testable?",,
+Migration Risk,"Can we import historical records and export full data before renewal?",,
+Onboarding & Support,"Is there a named onboarding plan, SLA, and escalation route?",,
+Commercial Fit,"Do pricing limits align with projected seat and usage growth for 12 months?",,
+Pilot Success Criteria,"Are success metrics and go/no-go thresholds defined before procurement?",,

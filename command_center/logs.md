@@ -61,3 +61,24 @@
   - Added “Quick start path” CTA block (tool-first internal action + comparison link + clarified next step).
 - Refreshed Search Console artifacts and dashboard data; re-ran quality gates.
 - Verification: `npm run gates` PASS; `npm run build` PASS.
+
+## 2026-02-10 08:14 PST
+- Executed immediate traffic + CTR sprint with funnel routing upgrades.
+- Reworked homepage (`src/pages/index.astro`) into explicit 3-lane funnel (call intelligence / outbound / support) with direct tool → money-page pathways and new checklist asset placement in nav + body.
+- Increased internal conversion paths from support and tools to money pages:
+  - Added direct comparison CTA blocks on `support/call-scoring-glossary` and `support/how-to-choose-call-recording-without-overbuying`.
+  - Strengthened result-state CTA copy in all 3 tools to push to matching money pages + checklist asset.
+- Fixed structural duplication bug on `tools/sales-call-intelligence-picker` (duplicate footer/sections removed), preserving analytics events.
+- Added new linkable asset and downloadable files:
+  - `src/pages/data/vendor-stack-evaluation-checklist-download.astro`
+  - `public/downloads/vendor-stack-evaluation-checklist.csv`
+  - `public/downloads/vendor-stack-evaluation-checklist.md`
+- Added distribution kit with 10 tailored, non-spam channel drafts + short social snippets:
+  - `command_center/distribution-kit-2026-02-10.md`
+- Compliance guardrails reinforced:
+  - Explicit no-guarantee wording added on tool pages.
+  - Maintained disclosure-above-affiliate-link on all money pages (gate verified).
+  - Adjusted YMYL-sensitive wording in checklist page to pass policy gate.
+- Verification:
+  - `npm run gates` PASS
+  - `npm run build` PASS

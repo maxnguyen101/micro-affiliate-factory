@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-02-10T07:34:14.734Z",
-  "generatedAtLocal": "02/09/2026, 23:34:14",
-  "totalPages": 31,
+  "generatedAt": "2026-02-10T16:14:05.695Z",
+  "generatedAtLocal": "02/10/2026, 08:14:05",
+  "totalPages": 32,
   "pages": [
     {
       "route": "/",
@@ -30,6 +30,13 @@
       "section": "data",
       "type": "data",
       "slug": "outbound-stack-integration-coverage"
+    },
+    {
+      "route": "/data/vendor-stack-evaluation-checklist-download",
+      "source": "src/pages/data/vendor-stack-evaluation-checklist-download.astro",
+      "section": "data",
+      "type": "data",
+      "slug": "vendor-stack-evaluation-checklist-download"
     },
     {
       "route": "/money/best-ai-sales-call-recording-tools-smb",
