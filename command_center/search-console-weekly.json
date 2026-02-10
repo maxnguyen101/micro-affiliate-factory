@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-02-10T05:57:09.321Z",
+  "siteUrl": "https://micro-affiliate-factory.howtopc2101.workers.dev/",
+  "performance": {
+    "range": {
+      "startDate": "2026-02-03",
+      "endDate": "2026-02-10"
+    },
+    "totals": {
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": 0
+    },
+    "topPages": [],
+    "error": "User does not have sufficient permission for site 'https://micro-affiliate-factory.howtopc2101.workers.dev/'. See also: https://support.google.com/webmasters/answer/2451999."
+  },
+  "sitemaps": {
+    "items": [],
+    "totals": {
+      "sitemapCount": 0,
+      "submitted": 0,
+      "indexed": 0,
+      "warnings": 0,
+      "errors": 0
+    },
+    "error": "User does not have sufficient permission for site 'https://micro-affiliate-factory.howtopc2101.workers.dev/'. See also: https://support.google.com/webmasters/answer/2451999."
+  },
+  "crawlErrors": {
+    "categories": [],
+    "totalLatest": 0,
+    "note": "crawl error count endpoint unavailable in current client/API version"
+  },
+  "inspections": []
+}

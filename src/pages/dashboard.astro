@@ -17,12 +17,18 @@ async function readJson(name, fallback) {
 const contentIndex = await readJson('content_index.json', { generatedAt: null, pages: [], artifacts: [] });
 const gates = await readJson('gates_last.json', { generatedAt: null, gates: [] });
 const analytics = await readJson('analytics_summary.json', { generatedAt: null, topPages: [], events: [], sources: [] });
+const searchConsole = await readJson('search_console_summary.json', {
+  generatedAt: null,
+  siteUrl: null,
+  performance: { clicks: 0, impressions: 0, ctr: 0, position: 0, topPages: [] },
+  indexing: { submitted: 0, indexed: 0, warnings: 0, errors: 0, crawlErrorsLatest: 0, crawlErrorCategories: [], inspections: [] },
+});
 const deploy = await readJson('deploy_state.json', { generatedAt: null });
 const runs = await readJson('runs.json', { generatedAt: null, timeline: [], queue: {}, systemsStatus: {} });
 
 const token = import.meta.env.PUBLIC_DASHBOARD_TOKEN || '';
-const payload = { contentIndex, gates, analytics, deploy, runs };
-const lastUpdated = [contentIndex.generatedAt, gates.generatedAt, analytics.generatedAt, deploy.generatedAt, runs.generatedAt]
+const payload = { contentIndex, gates, analytics, searchConsole, deploy, runs };
+const lastUpdated = [contentIndex.generatedAt, gates.generatedAt, analytics.generatedAt, searchConsole.generatedAt, deploy.generatedAt, runs.generatedAt]
   .filter(Boolean)
   .sort()
   .at(-1) || null;
@@ -243,12 +249,19 @@ const lastUpdated = [contentIndex.generatedAt, gates.generatedAt, analytics.gene
 
         <article class="card span-6">
           <h2>SEO / Indexing</h2>
-          <p class="muted">Placeholder block for Search Console + indexing metrics.</p>
+          <p class="muted">Search Console snapshot: {searchConsole.generatedAt || 'n/a'} {searchConsole.siteUrl ? `· ${searchConsole.siteUrl}` : ''}</p>
           <ul>
-            <li>robots.txt: present</li>
-            <li>sitemap.xml: present</li>
-            <li>TODO: ingest indexed URL count and crawl errors</li>
+            <li>Clicks (7d): {searchConsole.performance?.clicks ?? 0}</li>
+            <li>Impressions (7d): {searchConsole.performance?.impressions ?? 0}</li>
+            <li>CTR (7d): {searchConsole.performance?.ctr ?? 0}%</li>
+            <li>Avg position (7d): {searchConsole.performance?.position ?? 0}</li>
+            <li>Indexed URLs (sitemaps): {searchConsole.indexing?.indexed ?? 0}</li>
+            <li>Submitted URLs (sitemaps): {searchConsole.indexing?.submitted ?? 0}</li>
+            <li>Sitemap warnings/errors: {searchConsole.indexing?.warnings ?? 0}/{searchConsole.indexing?.errors ?? 0}</li>
+            <li>Crawl errors (latest): {searchConsole.indexing?.crawlErrorsLatest ?? 0}</li>
           </ul>
+          <h3 class="muted" style="margin-top:8px;">Top SEO Pages</h3>
+          <ul>{(searchConsole.performance?.topPages?.length ? searchConsole.performance.topPages.slice(0, 5).map((p) => `${p.page || 'unknown'} (${p.clicks || 0} clicks / ${p.impressions || 0} impr)`) : ['No Search Console page data yet']).map((x) => <li>{x}</li>)}</ul>
         </article>
 
         <article class="card span-6 commands">

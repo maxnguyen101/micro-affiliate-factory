@@ -164,6 +164,49 @@ function summarizeAnalytics(analyticsJsonText) {
   };
 }
 
+function summarizeSearchConsole(searchConsoleJsonText) {
+  let parsed = {};
+  try {
+    parsed = JSON.parse(searchConsoleJsonText || '{}');
+  } catch {
+    parsed = {};
+  }
+
+  const performance = parsed.performance || {};
+  const totals = performance.totals || {};
+  const topPages = Array.isArray(performance.topPages) ? performance.topPages : [];
+  const sitemapTotals = parsed.sitemaps?.totals || {};
+  const crawlErrors = parsed.crawlErrors || {};
+  const inspections = Array.isArray(parsed.inspections) ? parsed.inspections : [];
+
+  return {
+    generatedAt: parsed.generatedAt || null,
+    siteUrl: parsed.siteUrl || null,
+    performance: {
+      clicks: Number(totals.clicks || 0),
+      impressions: Number(totals.impressions || 0),
+      ctr: Number(totals.ctr || 0),
+      position: Number(totals.position || 0),
+      topPages,
+    },
+    indexing: {
+      submitted: Number(sitemapTotals.submitted || 0),
+      indexed: Number(sitemapTotals.indexed || 0),
+      warnings: Number(sitemapTotals.warnings || 0),
+      errors: Number(sitemapTotals.errors || 0),
+      crawlErrorsLatest: Number(crawlErrors.totalLatest || 0),
+      crawlErrorCategories: Array.isArray(crawlErrors.categories) ? crawlErrors.categories : [],
+      inspections,
+    },
+    hasData:
+      Number(totals.impressions || 0) > 0 ||
+      topPages.length > 0 ||
+      Number(sitemapTotals.submitted || 0) > 0 ||
+      Number(sitemapTotals.indexed || 0) > 0 ||
+      inspections.length > 0,
+  };
+}
+
 async function gitInfo() {
   const { execFile } = await import('node:child_process');
   const run = (args) =>
@@ -213,12 +256,13 @@ async function writeJson(name, data) {
 async function main() {
   await ensureDir(OUT_DIR);
 
-  const [queueMd, logsMd, artifactsMd, statusMd, analyticsJsonText, pages] = await Promise.all([
+  const [queueMd, logsMd, artifactsMd, statusMd, analyticsJsonText, searchConsoleJsonText, pages] = await Promise.all([
     readText(path.join(CC_DIR, 'queue.md')),
     readText(path.join(CC_DIR, 'logs.md')),
     readText(path.join(CC_DIR, 'artifacts.md')),
     readText(path.join(CC_DIR, 'status.md')),
     readText(path.join(CC_DIR, 'analytics-weekly.json'), '{}'),
+    readText(path.join(CC_DIR, 'search-console-weekly.json'), '{}'),
     listSitePages(),
   ]);
 
@@ -227,6 +271,7 @@ async function main() {
   const artifacts = parseArtifacts(artifactsMd);
   const status = parseStatus(statusMd);
   const analytics = summarizeAnalytics(analyticsJsonText);
+  const searchConsole = summarizeSearchConsole(searchConsoleJsonText);
   const git = await gitInfo();
 
   const contentIndex = {
@@ -273,6 +318,10 @@ async function main() {
     writeJson('analytics_summary.json', {
       generatedAt: nowIso,
       ...analytics,
+    }),
+    writeJson('search_console_summary.json', {
+      generatedAt: nowIso,
+      ...searchConsole,
     }),
     writeJson('deploy_state.json', deployState),
     writeJson('runs.json', runs),

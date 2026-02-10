@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-02-10T05:57:09.321Z",
+  "siteUrl": "https://micro-affiliate-factory.howtopc2101.workers.dev/",
+  "performance": {
+    "clicks": 0,
+    "impressions": 0,
+    "ctr": 0,
+    "position": 0,
+    "topPages": []
+  },
+  "indexing": {
+    "submitted": 0,
+    "indexed": 0,
+    "warnings": 0,
+    "errors": 0,
+    "crawlErrorsLatest": 0,
+    "crawlErrorCategories": [],
+    "inspections": []
+  },
+  "hasData": false
+}

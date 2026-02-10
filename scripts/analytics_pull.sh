@@ -10,3 +10,4 @@ if [ -f "$ROOT/.env.analytics" ]; then
 fi
 
 node scripts/fetch_analytics.mjs >> logs/analytics-pull.log 2>&1
+node scripts/fetch_search_console.mjs >> logs/analytics-pull.log 2>&1
