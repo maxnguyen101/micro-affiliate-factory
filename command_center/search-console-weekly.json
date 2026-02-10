@@ -1,6 +1,19 @@
 {
-  "generatedAt": "2026-02-10T05:57:09.321Z",
-  "siteUrl": "https://micro-affiliate-factory.howtopc2101.workers.dev/",
+  "generatedAt": "2026-02-10T07:33:30.433Z",
+  "siteUrl": null,
+  "diagnostics": {
+    "requestedSiteUrl": null,
+    "effectiveSiteUrl": null,
+    "hasAccess": false,
+    "permissionIssue": true,
+    "message": "Missing GSC_SITE_URL env var. Configure exact Search Console property before pulling data.",
+    "recommendedActions": [
+      "Set GSC_SITE_URL in .env.analytics using exact Search Console property format.",
+      "Ensure GA_SERVICE_ACCOUNT_JSON / GSC_SERVICE_ACCOUNT_JSON points to a valid key file.",
+      "Re-run node scripts/fetch_search_console.mjs after updating env values."
+    ],
+    "availableSitesSample": []
+  },
   "performance": {
     "range": {
       "startDate": "2026-02-03",
@@ -13,7 +26,9 @@
       "position": 0
     },
     "topPages": [],
-    "error": "User does not have sufficient permission for site 'https://micro-affiliate-factory.howtopc2101.workers.dev/'. See also: https://support.google.com/webmasters/answer/2451999."
+    "error": "Missing GSC_SITE_URL env var. Configure exact Search Console property before pulling data.",
+    "ok": false,
+    "permissionIssue": true
   },
   "sitemaps": {
     "items": [],
@@ -24,12 +39,15 @@
       "warnings": 0,
       "errors": 0
     },
-    "error": "User does not have sufficient permission for site 'https://micro-affiliate-factory.howtopc2101.workers.dev/'. See also: https://support.google.com/webmasters/answer/2451999."
+    "error": "Missing GSC_SITE_URL env var. Configure exact Search Console property before pulling data.",
+    "ok": false,
+    "permissionIssue": true
   },
   "crawlErrors": {
     "categories": [],
     "totalLatest": 0,
-    "note": "crawl error count endpoint unavailable in current client/API version"
+    "note": "Unavailable until GSC credentials are configured",
+    "ok": false
   },
   "inspections": []
 }

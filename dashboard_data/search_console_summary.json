@@ -1,6 +1,23 @@
 {
-  "generatedAt": "2026-02-10T05:57:09.321Z",
-  "siteUrl": "https://micro-affiliate-factory.howtopc2101.workers.dev/",
+  "generatedAt": "2026-02-10T07:33:30.433Z",
+  "siteUrl": null,
+  "diagnostics": {
+    "requestedSiteUrl": null,
+    "effectiveSiteUrl": null,
+    "hasAccess": false,
+    "permissionIssue": true,
+    "message": "Missing GSC_SITE_URL env var. Configure exact Search Console property before pulling data.",
+    "recommendedActions": [
+      "Set GSC_SITE_URL in .env.analytics using exact Search Console property format.",
+      "Ensure GA_SERVICE_ACCOUNT_JSON / GSC_SERVICE_ACCOUNT_JSON points to a valid key file.",
+      "Re-run node scripts/fetch_search_console.mjs after updating env values."
+    ],
+    "availableSitesSample": [],
+    "errors": [
+      "Missing GSC_SITE_URL env var. Configure exact Search Console property before pulling data.",
+      "Missing GSC_SITE_URL env var. Configure exact Search Console property before pulling data."
+    ]
+  },
   "performance": {
     "clicks": 0,
     "impressions": 0,

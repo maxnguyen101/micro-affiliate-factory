@@ -47,3 +47,17 @@
 - Enforced constraints: disclosure above first affiliate link, 1200+ words per required page, decision trees, 5-product/8+ criteria tables, 6-question FAQs, and internal link mix (2 support + 1 tool + 1 comparison per required page).
 - Replaced all Amazon search-based affiliate links across money pages with direct product URLs and placed them in clearly labeled “Support team essentials (Amazon links)” sections.
 - Ran `npm run gates`: PASS (build, disclosure, citations, duplication, ymyl).
+
+## 2026-02-09 23:33 PST
+- Inspected dashboard/artifacts; identified highest-impact gap: Search Console pipeline had opaque failure mode and missing env diagnostics (`GSC_SITE_URL` absent).
+- Hardened `scripts/fetch_search_console.mjs` with diagnostics-first behavior:
+  - Writes actionable artifact output even when env/key configuration is missing.
+  - Adds property access preflight (`sites.list`) + requested/effective property diagnostics + recommended actions.
+  - Propagates permission-style errors consistently across performance/sitemap/inspection pulls.
+- Extended `scripts/build_dashboard_data.mjs` Search Console summary with diagnostics payload and normalized error aggregation.
+- Updated `/dashboard` SEO/Indexing card with clear permission diagnostic text and remediation steps.
+- Improved conversion UX on top money page `best-helpdesk-live-chat-stack-for-small-teams`:
+  - Moved affiliate disclosure above first sponsored link for stricter compliance.
+  - Added “Quick start path” CTA block (tool-first internal action + comparison link + clarified next step).
+- Refreshed Search Console artifacts and dashboard data; re-ran quality gates.
+- Verification: `npm run gates` PASS; `npm run build` PASS.

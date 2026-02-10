@@ -178,10 +178,32 @@ function summarizeSearchConsole(searchConsoleJsonText) {
   const sitemapTotals = parsed.sitemaps?.totals || {};
   const crawlErrors = parsed.crawlErrors || {};
   const inspections = Array.isArray(parsed.inspections) ? parsed.inspections : [];
+  const diagnostics = parsed.diagnostics || {};
+
+  const errors = [performance?.error, parsed.sitemaps?.error, crawlErrors?.error]
+    .filter(Boolean)
+    .map((e) => String(e));
+  const inspectionErrors = inspections
+    .filter((i) => i?.error)
+    .map((i) => `${i.url || 'inspection'}: ${i.error}`);
+  const allErrors = [...errors, ...inspectionErrors];
+  const permissionIssue =
+    Boolean(diagnostics.permissionIssue) ||
+    allErrors.some((e) => /sufficient permission|does not have permission|insufficient|not a verified owner/i.test(e));
 
   return {
     generatedAt: parsed.generatedAt || null,
     siteUrl: parsed.siteUrl || null,
+    diagnostics: {
+      requestedSiteUrl: diagnostics.requestedSiteUrl || null,
+      effectiveSiteUrl: diagnostics.effectiveSiteUrl || parsed.siteUrl || null,
+      hasAccess: Boolean(diagnostics.hasAccess),
+      permissionIssue,
+      message: diagnostics.message || null,
+      recommendedActions: Array.isArray(diagnostics.recommendedActions) ? diagnostics.recommendedActions : [],
+      availableSitesSample: Array.isArray(diagnostics.availableSitesSample) ? diagnostics.availableSitesSample : [],
+      errors: allErrors,
+    },
     performance: {
       clicks: Number(totals.clicks || 0),
       impressions: Number(totals.impressions || 0),

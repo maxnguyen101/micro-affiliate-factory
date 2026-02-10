@@ -20,6 +20,7 @@ const analytics = await readJson('analytics_summary.json', { generatedAt: null, 
 const searchConsole = await readJson('search_console_summary.json', {
   generatedAt: null,
   siteUrl: null,
+  diagnostics: { permissionIssue: false, hasAccess: false, message: null, recommendedActions: [], errors: [], availableSitesSample: [] },
   performance: { clicks: 0, impressions: 0, ctr: 0, position: 0, topPages: [] },
   indexing: { submitted: 0, indexed: 0, warnings: 0, errors: 0, crawlErrorsLatest: 0, crawlErrorCategories: [], inspections: [] },
 });
@@ -250,6 +251,21 @@ const lastUpdated = [contentIndex.generatedAt, gates.generatedAt, analytics.gene
         <article class="card span-6">
           <h2>SEO / Indexing</h2>
           <p class="muted">Search Console snapshot: {searchConsole.generatedAt || 'n/a'} {searchConsole.siteUrl ? `· ${searchConsole.siteUrl}` : ''}</p>
+          {searchConsole.diagnostics?.permissionIssue && (
+            <>
+              <p class="status-warn" style="margin-top:8px;">⚠ Permission diagnostic: Search Console property access is not configured for this service account.</p>
+              <p class="muted" style="margin-top:6px;">{searchConsole.diagnostics?.message || 'Confirm exact property URL and account permissions.'}</p>
+              <ul>
+                {(searchConsole.diagnostics?.recommendedActions?.length
+                  ? searchConsole.diagnostics.recommendedActions.slice(0, 3)
+                  : [
+                      'Grant Restricted or Full access to the service account email on the exact Search Console property.',
+                      'Use exact property format in GSC_SITE_URL (sc-domain or URL-prefix).',
+                      'Re-run analytics pull after access is granted.',
+                    ]).map((x) => <li>{x}</li>)}
+              </ul>
+            </>
+          )}
           <ul>
             <li>Clicks (7d): {searchConsole.performance?.clicks ?? 0}</li>
             <li>Impressions (7d): {searchConsole.performance?.impressions ?? 0}</li>
