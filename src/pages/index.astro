@@ -5,41 +5,54 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Micro Affiliate Factory</title>
-    <style>
-      body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:920px;margin:40px auto;padding:0 16px;line-height:1.6}
-      .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-      .card{border:1px solid #ddd;border-radius:10px;padding:14px}
-      a{color:#0b57d0}
-    </style>
+    <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <h1>Micro Affiliate Factory</h1>
-    <p>Criteria-first buying guidance for B2B tools and high-ticket gear.</p>
+    <main class="container">
+      <nav>
+        <div class="brand">Micro Affiliate Factory</div>
+        <div class="nav-links">
+          <a href="/tools/sales-call-intelligence-picker">Tool</a>
+          <a href="/money/best-ai-sales-call-recording-tools-smb">Money Pages</a>
+          <a href="/support/how-to-choose-call-recording-without-overbuying">Support</a>
+        </div>
+      </nav>
 
-    <h2>Start Here</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Interactive Tool</h3>
-        <a href="/tools/sales-call-intelligence-picker">Sales Call Intelligence Picker</a>
+      <section class="hero">
+        <span class="badge">Hybrid Affiliate Engine</span>
+        <h1>Criteria-first buying guides that actually feel usable</h1>
+        <p>Interactive tools + comparison pages + support docs designed for real purchase decisions.</p>
+      </section>
+
+      <div class="grid">
+        <article class="card">
+          <h3>Interactive Tool</h3>
+          <p>Get a shortlist in under 60 seconds.</p>
+          <a href="/tools/sales-call-intelligence-picker">Open Sales Call Intelligence Picker →</a>
+        </article>
+
+        <article class="card">
+          <h3>Money Pages</h3>
+          <ul>
+            <li><a href="/money/best-ai-sales-call-recording-tools-smb">Best AI Sales Call Recording Tools</a></li>
+            <li><a href="/money/gong-vs-chorus-vs-avoma">Gong vs Chorus vs Avoma</a></li>
+            <li><a href="/money/best-call-intelligence-tools-for-agencies">Best for Agencies</a></li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Support Pages</h3>
+          <ul>
+            <li><a href="/support/how-to-choose-call-recording-without-overbuying">Choose without overbuying</a></li>
+            <li><a href="/support/mistakes-in-conversation-intelligence-rollouts">7 rollout mistakes</a></li>
+            <li><a href="/support/crm-compatibility-checklist">CRM compatibility checklist</a></li>
+            <li><a href="/support/call-scoring-glossary">Call scoring glossary</a></li>
+            <li><a href="/support/troubleshooting-transcript-quality-and-adoption">Troubleshooting transcript quality</a></li>
+          </ul>
+        </article>
       </div>
-      <div class="card">
-        <h3>Money Pages</h3>
-        <ul>
-          <li><a href="/money/best-ai-sales-call-recording-tools-smb">Best AI Sales Call Recording Tools</a></li>
-          <li><a href="/money/gong-vs-chorus-vs-avoma">Gong vs Chorus vs Avoma</a></li>
-          <li><a href="/money/best-call-intelligence-tools-for-agencies">Best for Agencies</a></li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Support Pages</h3>
-        <ul>
-          <li><a href="/support/how-to-choose-call-recording-without-overbuying">Choose without overbuying</a></li>
-          <li><a href="/support/mistakes-in-conversation-intelligence-rollouts">7 rollout mistakes</a></li>
-          <li><a href="/support/crm-compatibility-checklist">CRM compatibility checklist</a></li>
-          <li><a href="/support/call-scoring-glossary">Call scoring glossary</a></li>
-          <li><a href="/support/troubleshooting-transcript-quality-and-adoption">Troubleshooting transcript quality</a></li>
-        </ul>
-      </div>
-    </div>
+
+      <footer>Built with Astro • Hosted on Cloudflare</footer>
+    </main>
   </body>
 </html>

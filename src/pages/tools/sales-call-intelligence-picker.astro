@@ -3,7 +3,7 @@ import rules from '../../data/tool-rules/sales-call-intelligence.json';
 ---
 <html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width" /><title>Sales Call Intelligence Picker</title>
 <style>body{font-family:system-ui;max-width:900px;margin:40px auto;padding:0 16px}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}label{display:block;margin:10px 0 4px}select,button{padding:8px;width:100%}#out{margin-top:16px;border:1px solid #ddd;border-radius:10px;padding:12px}</style>
-</head><body>
+<link rel="stylesheet" href="/styles.css" /></head><body><main class="container">
 <h1>Sales Call Intelligence Picker</h1>
 <p>Pick your constraints and get a shortlist in seconds.</p>
 <form id="picker">
@@ -46,4 +46,4 @@ form.addEventListener('submit', (e) => {
   out.innerHTML = `<h3>Top fits</h3><ol>${top.map(t => `<li><strong>${t.name}</strong> — ${t.why.slice(0,2).join(' · ') || 'Balanced fit by your criteria'}</li>`).join('')}</ol><p><strong>Next step:</strong> compare options on the <a href='/money/gong-vs-chorus-vs-avoma'>comparison page</a>.</p>`;
 });
 </script>
-</body></html>
+<footer>Micro Affiliate Factory</footer></main><footer>Micro Affiliate Factory</footer></main></body></html>
