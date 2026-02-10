@@ -27,6 +27,12 @@ const searchConsole = await readJson('search_console_summary.json', {
 const deploy = await readJson('deploy_state.json', { generatedAt: null });
 const runs = await readJson('runs.json', { generatedAt: null, timeline: [], queue: {}, systemsStatus: {} });
 
+const sessionsEvent = (analytics.events || []).find((e) => (e.event || e.name) === 'session_start');
+const affiliateClickEvent = (analytics.events || []).find((e) => (e.event || e.name) === 'affiliate_click');
+const sessionCount = Number(sessionsEvent?.count ?? sessionsEvent?.value ?? 0);
+const affiliateClickCount = Number(affiliateClickEvent?.count ?? affiliateClickEvent?.value ?? 0);
+const clickThroughRate = sessionCount > 0 ? ((affiliateClickCount / sessionCount) * 100).toFixed(2) : '—';
+
 const token = import.meta.env.PUBLIC_DASHBOARD_TOKEN || '';
 const payload = { contentIndex, gates, analytics, searchConsole, deploy, runs };
 const lastUpdated = [contentIndex.generatedAt, gates.generatedAt, analytics.generatedAt, searchConsole.generatedAt, deploy.generatedAt, runs.generatedAt]
@@ -157,6 +163,9 @@ const lastUpdated = [contentIndex.generatedAt, gates.generatedAt, analytics.gene
         <div class="kpi"><span class="muted">Queue (In Progress)</span><b>{runs.queue?.inProgress?.length ?? 0}</b></div>
         <div class="kpi"><span class="muted">Log Entries</span><b>{runs.timeline?.length ?? 0}</b></div>
         <div class="kpi"><span class="muted">Analytics Pages</span><b>{analytics.topPages?.length ?? 0}</b></div>
+        <div class="kpi"><span class="muted">Sessions (placeholder)</span><b>{sessionCount}</b></div>
+        <div class="kpi"><span class="muted">Affiliate Clicks (placeholder)</span><b>{affiliateClickCount}</b></div>
+        <div class="kpi"><span class="muted">Affiliate CTR (placeholder)</span><b>{clickThroughRate}{clickThroughRate === '—' ? '' : '%'}</b></div>
       </section>
 
       <section class="grid" style="margin-top:12px;">
@@ -242,6 +251,7 @@ const lastUpdated = [contentIndex.generatedAt, gates.generatedAt, analytics.gene
         <article class="card span-6">
           <h2>Analytics Overview</h2>
           <p class="muted">Generated: {analytics.generatedAt || 'n/a'}</p>
+          <p class="muted" style="margin-top:6px;">First-money readiness uses placeholders until GA events populate: session_start, affiliate_click, and CTR = affiliate_click / session_start.</p>
           <h3 class="muted" style="margin-top:8px;">Top Pages</h3>
           <ul>{(analytics.topPages?.length ? analytics.topPages.slice(0, 5).map((p) => `${p.page || p.path || 'unknown'} (${p.views || p.value || 0})`) : ['No analytics data yet']).map((x) => <li>{x}</li>)}</ul>
           <h3 class="muted" style="margin-top:8px;">Events</h3>

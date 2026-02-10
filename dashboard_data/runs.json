@@ -1,23 +1,72 @@
 {
-  "generatedAt": "2026-02-10T16:14:05.695Z",
+  "generatedAt": "2026-02-10T16:46:27.358Z",
   "latest": {
-    "title": "2026-02-09 23:33 PST",
+    "title": "2026-02-10 08:43 PST",
     "notes": [
-      "Inspected dashboard/artifacts; identified highest-impact gap: Search Console pipeline had opaque failure mode and missing env diagnostics (`GSC_SITE_URL` absent).",
-      "Hardened `scripts/fetch_search_console.mjs` with diagnostics-first behavior:",
-      "Writes actionable artifact output even when env/key configuration is missing.",
-      "Adds property access preflight (`sites.list`) + requested/effective property diagnostics + recommended actions.",
-      "Propagates permission-style errors consistently across performance/sitemap/inspection pulls.",
-      "Extended `scripts/build_dashboard_data.mjs` Search Console summary with diagnostics payload and normalized error aggregation.",
-      "Updated `/dashboard` SEO/Indexing card with clear permission diagnostic text and remediation steps.",
-      "Improved conversion UX on top money page `best-helpdesk-live-chat-stack-for-small-teams`:",
-      "Moved affiliate disclosure above first sponsored link for stricter compliance.",
-      "Added “Quick start path” CTA block (tool-first internal action + comparison link + clarified next step).",
-      "Refreshed Search Console artifacts and dashboard data; re-ran quality gates.",
-      "Verification: `npm run gates` PASS; `npm run build` PASS."
+      "Ran continuous-improvement revenue sprint focused on first measurable monetization signals.",
+      "Improved on-page conversion intent and handoff clarity on top 3 money pages:",
+      "`money/best-ai-sales-call-recording-tools-smb`",
+      "`money/best-outbound-stack-for-small-b2b-teams`",
+      "`money/best-helpdesk-live-chat-stack-for-small-teams`",
+      "Added explicit trust/compliance cues (affiliate-link note + no-guarantee language) while preserving disclosure placement requirements.",
+      "Added first-money readiness KPI tiles to `/dashboard`:",
+      "Sessions (placeholder via `session_start`)",
+      "Affiliate Clicks (placeholder via `affiliate_click`)",
+      "Affiliate CTR placeholder (`affiliate_click / session_start`)",
+      "Upgraded distribution artifact with execution layer:",
+      "Day-1 checklist",
+      "Message opener variants (problem-led, operator-led, data-led)",
+      "Rebuilt dashboard data + ran quality checks:",
+      "`npm run gates` PASS",
+      "`npm run build` PASS"
     ]
   },
   "timeline": [
+    {
+      "title": "2026-02-10 08:43 PST",
+      "notes": [
+        "Ran continuous-improvement revenue sprint focused on first measurable monetization signals.",
+        "Improved on-page conversion intent and handoff clarity on top 3 money pages:",
+        "`money/best-ai-sales-call-recording-tools-smb`",
+        "`money/best-outbound-stack-for-small-b2b-teams`",
+        "`money/best-helpdesk-live-chat-stack-for-small-teams`",
+        "Added explicit trust/compliance cues (affiliate-link note + no-guarantee language) while preserving disclosure placement requirements.",
+        "Added first-money readiness KPI tiles to `/dashboard`:",
+        "Sessions (placeholder via `session_start`)",
+        "Affiliate Clicks (placeholder via `affiliate_click`)",
+        "Affiliate CTR placeholder (`affiliate_click / session_start`)",
+        "Upgraded distribution artifact with execution layer:",
+        "Day-1 checklist",
+        "Message opener variants (problem-led, operator-led, data-led)",
+        "Rebuilt dashboard data + ran quality checks:",
+        "`npm run gates` PASS",
+        "`npm run build` PASS"
+      ]
+    },
+    {
+      "title": "2026-02-10 08:14 PST",
+      "notes": [
+        "Executed immediate traffic + CTR sprint with funnel routing upgrades.",
+        "Reworked homepage (`src/pages/index.astro`) into explicit 3-lane funnel (call intelligence / outbound / support) with direct tool → money-page pathways and new checklist asset placement in nav + body.",
+        "Increased internal conversion paths from support and tools to money pages:",
+        "Added direct comparison CTA blocks on `support/call-scoring-glossary` and `support/how-to-choose-call-recording-without-overbuying`.",
+        "Strengthened result-state CTA copy in all 3 tools to push to matching money pages + checklist asset.",
+        "Fixed structural duplication bug on `tools/sales-call-intelligence-picker` (duplicate footer/sections removed), preserving analytics events.",
+        "Added new linkable asset and downloadable files:",
+        "`src/pages/data/vendor-stack-evaluation-checklist-download.astro`",
+        "`public/downloads/vendor-stack-evaluation-checklist.csv`",
+        "`public/downloads/vendor-stack-evaluation-checklist.md`",
+        "Added distribution kit with 10 tailored, non-spam channel drafts + short social snippets:",
+        "`command_center/distribution-kit-2026-02-10.md`",
+        "Compliance guardrails reinforced:",
+        "Explicit no-guarantee wording added on tool pages.",
+        "Maintained disclosure-above-affiliate-link on all money pages (gate verified).",
+        "Adjusted YMYL-sensitive wording in checklist page to pass policy gate.",
+        "Verification:",
+        "`npm run gates` PASS",
+        "`npm run build` PASS"
+      ]
+    },
     {
       "title": "2026-02-09 23:33 PST",
       "notes": [
@@ -119,11 +168,11 @@
     ]
   },
   "systemsStatus": {
-    "activeNiche": "AI Sales Call Recording & Conversation Intelligence SaaS",
-    "currentStage": "Live + dashboard control panel integrated (with Search Console diagnostics surfaced)",
-    "nextAction": "Set `GSC_SITE_URL` in `.env.analytics`, grant service-account property access in Search Console, then rerun analytics pull.",
-    "blockers": "Search Console data pull blocked by missing `GSC_SITE_URL` configuration.",
-    "lastRun": "2026-02-09 23:33 PST",
-    "publishState": "🚫 Not publishing/deploying until A–D received."
+    "activeNiche": "Hybrid B2B stack selection (call intelligence + outbound + support)",
+    "currentStage": "Revenue sprint iteration live (money-page CTA/handoff improvements + first-money KPI placeholders on dashboard)",
+    "nextAction": "Execute Day-1 distribution checklist, monitor `session_start` + `affiliate_click`, and tune lowest-CTR money page CTA copy within 24h.",
+    "blockers": "Search Console property env/access still required for deeper search diagnostics (`GSC_SITE_URL` + property permission).",
+    "lastRun": "2026-02-10 08:43 PST",
+    "publishState": "✅ Main updated and pushed."
   }
 }

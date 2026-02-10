@@ -2,6 +2,19 @@
 
 Use these as tailored drafts (not copy-paste spam). Personalize with your real context before posting.
 
+## Day-1 execution checklist (first-money focus)
+- [ ] Add UTM tags per channel before posting (source/medium/campaign).
+- [ ] Publish to 2 channels only in first 4 hours (avoid simultaneous mass posting).
+- [ ] Reply to first 3 comments before sharing follow-up links.
+- [ ] Verify same-day events in GA: `session_start`, `tool_to_money_click`, `affiliate_click`.
+- [ ] Record top landing page + CTR in `command_center/logs.md` by end of day.
+- [ ] Keep compliance: disclose creator affiliation where required, no earnings guarantees.
+
+## Message variants (quick swaps)
+- **Problem-led opener:** “Teams overbuy tooling before process is stable. We built a free checklist to prevent that.”
+- **Operator-led opener:** “Used this in real vendor demos this week; helped cut shortlist time from hours to minutes.”
+- **Data-led opener:** “Tracking tool→money handoff CTR; sharing the exact checklist + picker flow we’re testing.”
+
 ## 1) Indie Hackers (Product/Marketing)
 **Angle:** Free practical checklist + interactive picker for small teams.
 **Draft:**

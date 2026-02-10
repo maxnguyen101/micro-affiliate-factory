@@ -82,3 +82,21 @@
 - Verification:
   - `npm run gates` PASS
   - `npm run build` PASS
+
+## 2026-02-10 08:43 PST
+- Ran continuous-improvement revenue sprint focused on first measurable monetization signals.
+- Improved on-page conversion intent and handoff clarity on top 3 money pages:
+  - `money/best-ai-sales-call-recording-tools-smb`
+  - `money/best-outbound-stack-for-small-b2b-teams`
+  - `money/best-helpdesk-live-chat-stack-for-small-teams`
+- Added explicit trust/compliance cues (affiliate-link note + no-guarantee language) while preserving disclosure placement requirements.
+- Added first-money readiness KPI tiles to `/dashboard`:
+  - Sessions (placeholder via `session_start`)
+  - Affiliate Clicks (placeholder via `affiliate_click`)
+  - Affiliate CTR placeholder (`affiliate_click / session_start`)
+- Upgraded distribution artifact with execution layer:
+  - Day-1 checklist
+  - Message opener variants (problem-led, operator-led, data-led)
+- Rebuilt dashboard data + ran quality checks:
+  - `npm run gates` PASS
+  - `npm run build` PASS
