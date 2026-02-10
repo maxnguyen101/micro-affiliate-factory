@@ -10,7 +10,6 @@ import rules from '../../data/tool-rules/sales-call-intelligence.json';
   gtag('config', 'G-MBTT5PEJBB');
 </script>
 <meta charset="utf-8" /><meta name="viewport" content="width=device-width" /><title>Sales Call Intelligence Picker</title>
-<style>body{font-family:system-ui;max-width:900px;margin:40px auto;padding:0 16px}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}label{display:block;margin:10px 0 4px}select,button{padding:8px;width:100%}#out{margin-top:16px;border:1px solid #ddd;border-radius:10px;padding:12px}</style>
 <link rel="stylesheet" href="/styles.css" />
 <link rel="canonical" href="https://micro-affiliate-factory.howtopc2101.workers.dev/tools/sales-call-intelligence-picker/" />
 <meta property="og:title" content="Sales Call Intelligence Picker" />
@@ -22,19 +21,20 @@ import rules from '../../data/tool-rules/sales-call-intelligence.json';
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Micro Affiliate Factory","url":"https://micro-affiliate-factory.howtopc2101.workers.dev"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://micro-affiliate-factory.howtopc2101.workers.dev/"},{"@type":"ListItem","position":2,"name":"Page","item":"https://micro-affiliate-factory.howtopc2101.workers.dev/tools/sales-call-intelligence-picker/"}]}</script>
 </head><body><main class="container">
+<nav class="page-nav" aria-label="Page navigation"><a href="/">Home</a><a href="/dashboard">Dashboard</a><a href="/money/best-ai-sales-call-recording-tools-smb">Top comparison</a></nav>
 <h1>Sales Call Intelligence Picker</h1>
 <p>Pick your constraints and get a shortlist in seconds.</p>
 <form id="picker">
-  <div class="row">
+  <div class="grid">
     <div><label>Team size</label><select id="team"><option>1-5</option><option>6-20</option><option>21-100</option><option>100+</option></select></div>
     <div><label>CRM</label><select id="crm"><option>HubSpot</option><option>Salesforce</option><option>Pipedrive</option><option>Other</option><option>None</option></select></div>
     <div><label>Primary goal</label><select id="goal"><option>coaching quality</option><option>deal visibility</option><option>call QA</option><option>ramp speed</option></select></div>
     <div><label>Deployment tolerance</label><select id="deploy"><option>low</option><option>medium</option><option>high</option></select></div>
     <div><label>Budget preference</label><select id="budget"><option>lean starter</option><option>balanced</option><option>premium</option></select></div>
   </div>
-  <button type="submit">Get shortlist</button>
+  <button class="btn-primary" type="submit">Get shortlist</button>
 </form>
-<div id="out"><em>Submit to see results.</em></div>
+<div id="out" class="card"><em>Submit to see results.</em></div>
 <p><small>Disclosure: this recommendation tool is informational and does not guarantee sales outcomes or ROI.</small></p>
 <p><a href="/money/best-ai-sales-call-recording-tools-smb">Go to SMB money page</a></p>
 <script type="module" define:vars={{ rules }}>

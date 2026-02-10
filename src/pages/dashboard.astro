@@ -53,13 +53,14 @@ const lastUpdated = [contentIndex.generatedAt, gates.generatedAt, analytics.gene
         --bg: #0a0e17;
         --panel: #11192b;
         --panel-2: #17243b;
-        --muted: #9cb3d7;
-        --text: #e8f0ff;
+        --muted: #a9bde3;
+        --text: #eaf1ff;
         --ok: #21c77a;
         --warn: #ffba4a;
         --danger: #ff6673;
-        --accent: #7ba2ff;
-        --border: #253756;
+        --accent: #9abaff;
+        --border: #2b3f63;
+        --focus: #a5c3ff;
       }
       * { box-sizing: border-box; }
       body {
@@ -70,7 +71,7 @@ const lastUpdated = [contentIndex.generatedAt, gates.generatedAt, analytics.gene
       }
       .wrap { max-width: 1200px; margin: 0 auto; padding: 24px 16px 48px; }
       h1, h2, h3 { margin: 0 0 10px; }
-      p { margin: 0; color: var(--muted); }
+      p { margin: 0; color: var(--muted); max-width: 75ch; }
       .top {
         display: flex; gap: 12px; flex-wrap: wrap; justify-content: space-between; align-items: end;
         margin-bottom: 20px;
@@ -115,6 +116,10 @@ const lastUpdated = [contentIndex.generatedAt, gates.generatedAt, analytics.gene
         border-radius: 10px;
       }
       button { cursor: pointer; }
+      a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+        outline: 2px solid var(--focus);
+        outline-offset: 2px;
+      }
       table { width:100%; border-collapse: collapse; margin-top: 10px; }
       th, td { border-bottom: 1px solid var(--border); padding: 8px 6px; text-align: left; font-size: .92rem; }
       .commands button { margin: 6px 6px 0 0; }
