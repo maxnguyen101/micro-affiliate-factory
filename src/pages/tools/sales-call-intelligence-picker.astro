@@ -1,0 +1,49 @@
+---
+import rules from '../../data/tool-rules/sales-call-intelligence.json';
+---
+<html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width" /><title>Sales Call Intelligence Picker</title>
+<style>body{font-family:system-ui;max-width:900px;margin:40px auto;padding:0 16px}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}label{display:block;margin:10px 0 4px}select,button{padding:8px;width:100%}#out{margin-top:16px;border:1px solid #ddd;border-radius:10px;padding:12px}</style>
+</head><body>
+<h1>Sales Call Intelligence Picker</h1>
+<p>Pick your constraints and get a shortlist in seconds.</p>
+<form id="picker">
+  <div class="row">
+    <div><label>Team size</label><select id="team"><option>1-5</option><option>6-20</option><option>21-100</option><option>100+</option></select></div>
+    <div><label>CRM</label><select id="crm"><option>HubSpot</option><option>Salesforce</option><option>Pipedrive</option><option>Other</option><option>None</option></select></div>
+    <div><label>Primary goal</label><select id="goal"><option>coaching quality</option><option>deal visibility</option><option>call QA</option><option>ramp speed</option></select></div>
+    <div><label>Deployment tolerance</label><select id="deploy"><option>low</option><option>medium</option><option>high</option></select></div>
+    <div><label>Budget preference</label><select id="budget"><option>lean starter</option><option>balanced</option><option>premium</option></select></div>
+  </div>
+  <button type="submit">Get shortlist</button>
+</form>
+<div id="out"><em>Submit to see results.</em></div>
+<p><a href="/money/best-ai-sales-call-recording-tools-smb">Go to SMB money page</a></p>
+<script type="module" define:vars={{ rules }}>
+const form = document.getElementById('picker');
+const out = document.getElementById('out');
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const team = document.getElementById('team').value;
+  const crm = document.getElementById('crm').value;
+  const goal = document.getElementById('goal').value;
+  const deploy = document.getElementById('deploy').value;
+  const budget = document.getElementById('budget').value;
+
+  const scores = rules.vendors.map(v => ({...v, score:0, why:[]}));
+  for (const s of scores){
+    if (crm === 'Salesforce' && s.tags.includes('salesforce')) { s.score += 3; s.why.push('Strong Salesforce fit'); }
+    if (crm === 'HubSpot' && s.tags.includes('hubspot')) { s.score += 3; s.why.push('Strong HubSpot fit'); }
+    if ((team === '1-5' || team === '6-20') && s.tags.includes('smb')) { s.score += 2; s.why.push('SMB-friendly setup'); }
+    if (team === '100+' && s.tags.includes('enterprise')) { s.score += 2; s.why.push('Enterprise depth'); }
+    if (goal === 'coaching quality' && s.tags.includes('coaching')) { s.score += 2; s.why.push('Coaching workflows'); }
+    if (goal === 'deal visibility' && s.tags.includes('deal_visibility')) { s.score += 2; s.why.push('Deal visibility focus'); }
+    if (budget === 'lean starter' && s.tags.includes('lean')) { s.score += 2; s.why.push('Lean-budget friendly'); }
+    if (budget === 'premium' && s.tags.includes('enterprise')) { s.score += 1; s.why.push('Premium-depth option'); }
+    if (deploy === 'low' && s.tags.includes('quick_setup')) { s.score += 2; s.why.push('Fast setup'); }
+  }
+
+  const top = scores.sort((a,b)=>b.score-a.score).slice(0,3);
+  out.innerHTML = `<h3>Top fits</h3><ol>${top.map(t => `<li><strong>${t.name}</strong> — ${t.why.slice(0,2).join(' · ') || 'Balanced fit by your criteria'}</li>`).join('')}</ol><p><strong>Next step:</strong> compare options on the <a href='/money/gong-vs-chorus-vs-avoma'>comparison page</a>.</p>`;
+});
+</script>
+</body></html>

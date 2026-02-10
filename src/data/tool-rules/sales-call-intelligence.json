@@ -1,0 +1,9 @@
+{
+  "vendors": [
+    {"id":"gong","name":"Gong","tags":["enterprise","coaching","analytics","salesforce"]},
+    {"id":"chorus","name":"Chorus","tags":["enterprise","deal_visibility","salesforce"]},
+    {"id":"avoma","name":"Avoma","tags":["smb","balanced","hubspot","meeting_assistant"]},
+    {"id":"fireflies","name":"Fireflies.ai","tags":["smb","lean","quick_setup","multi_crm"]},
+    {"id":"wingman","name":"Clari Copilot (Wingman)","tags":["enterprise","forecasting","salesforce"]}
+  ]
+}
