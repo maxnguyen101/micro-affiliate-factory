@@ -51,10 +51,29 @@ document.getElementById('run').addEventListener('click', () => {
     agency: '/money/best-outbound-stack-for-agencies'
   };
   out.innerHTML = `<h3>${top.label}</h3><p>Best fit based on your routing + volume + budget signals.</p><p><a href="${links[top.id]}">Go to matching comparison page →</a></p>`;
+  if (typeof gtag === 'function') {
+    gtag('event', 'tool_complete', { tool_name: 'outbound_stack_picker', profile: top.id });
+  }
 });
 </script>
 
 <section class="card"><h3>Related guides</h3><ul><li><a href="/">Home hub</a></li><li><a href="/tools/sales-call-intelligence-picker">Call Intelligence Tool</a></li><li><a href="/tools/outbound-stack-picker">Outbound Stack Tool</a></li><li><a href="/data/call-intelligence-feature-matrix">Call Intelligence Matrix</a></li><li><a href="/data/outbound-stack-integration-coverage">Outbound Integration Table</a></li></ul></section>
 
 <section class="card"><h3>Embed this tool</h3><p>Copy/paste:</p><pre>&lt;iframe src="https://micro-affiliate-factory.howtopc2101.workers.dev/tools/outbound-stack-picker/" width="100%" height="760" loading="lazy"&gt;&lt;/iframe&gt;</pre><p>Citation: If you use this tool, attribute to Micro Affiliate Factory with a link to this page.</p></section>
-<footer>Micro Affiliate Factory</footer></main></body></html>
+<footer>Micro Affiliate Factory</footer></main>
+<script>
+document.addEventListener('click', function(e){
+  const a = e.target.closest('a[href]');
+  if(!a) return;
+  const href = a.getAttribute('href') || '';
+  const isOutbound = href.startsWith('http');
+  const isMoney = href.startsWith('/money/');
+  if (typeof gtag === 'function' && isOutbound) {
+    gtag('event','affiliate_click',{link_url: href, page_path: location.pathname});
+  }
+  if (typeof gtag === 'function' && location.pathname.startsWith('/tools/') && isMoney) {
+    gtag('event','tool_to_money_click',{link_url: href, tool_path: location.pathname});
+  }
+});
+</script>
+</body></html>

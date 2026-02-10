@@ -18,4 +18,20 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://micro-affiliate-factory.howtopc2101.workers.dev/"},{"@type":"ListItem","position":2,"name":"Page","item":"https://micro-affiliate-factory.howtopc2101.workers.dev/support/crm-routing-checklist-for-sdr-teams/"}]}</script>
 </head><body><main class="container"><h1>CRM Routing Checklist for SDR Teams</h1><ul><li>Lead owner logic</li><li>Territory fields</li><li>Round-robin fallback</li><li>Meeting outcome sync</li></ul><p><a href="/money/smartlead-vs-instantly-and-calendly-vs-chili-piper">Comparison page</a></p>
 <section class="card"><h3>Related guides</h3><ul><li><a href="/">Home hub</a></li><li><a href="/tools/sales-call-intelligence-picker">Call Intelligence Tool</a></li><li><a href="/tools/outbound-stack-picker">Outbound Stack Tool</a></li><li><a href="/data/call-intelligence-feature-matrix">Call Intelligence Matrix</a></li><li><a href="/data/outbound-stack-integration-coverage">Outbound Integration Table</a></li></ul></section>
-<footer>Micro Affiliate Factory</footer></main></body></html>
+<footer>Micro Affiliate Factory</footer></main>
+<script>
+document.addEventListener('click', function(e){
+  const a = e.target.closest('a[href]');
+  if(!a) return;
+  const href = a.getAttribute('href') || '';
+  const isOutbound = href.startsWith('http');
+  const isMoney = href.startsWith('/money/');
+  if (typeof gtag === 'function' && isOutbound) {
+    gtag('event','affiliate_click',{link_url: href, page_path: location.pathname});
+  }
+  if (typeof gtag === 'function' && location.pathname.startsWith('/tools/') && isMoney) {
+    gtag('event','tool_to_money_click',{link_url: href, tool_path: location.pathname});
+  }
+});
+</script>
+</body></html>

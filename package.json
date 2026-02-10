@@ -15,6 +15,7 @@
     "gates": "npm run gate:build && npm run gate:disclosure && npm run gate:citations && npm run gate:duplication && npm run gate:ymyl"
   },
   "dependencies": {
-    "astro": "^5.17.1"
+    "astro": "^5.17.1",
+    "googleapis": "^171.4.0"
   }
 }
