@@ -14,3 +14,9 @@
 - Implemented first cluster pages (tool + 3 money + 5 support) with disclosure blocks on money pages.
 - Build PASS with 10 static routes.
 - Preparing Git push + Cloudflare Pages hookup next.
+
+## 2026-02-09 20:24 PST
+- Applied visual polish pass (global styles + improved homepage and page consistency).
+- Wired Amazon Associates tag `microaffiliat-20` via shared helper at `src/data/affiliate.ts`.
+- Added Amazon-tagged, criteria-relevant outbound links on all three money pages.
+- Kept disclosure block above first affiliate link on each money page for compliance.
