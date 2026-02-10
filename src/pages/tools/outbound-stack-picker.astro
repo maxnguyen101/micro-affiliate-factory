@@ -1,0 +1,38 @@
+---
+const profiles = [
+  { id: 'lean', label: 'Lean Starter', rules: ['low volume', 'simple routing', 'starter budget'] },
+  { id: 'growth', label: 'Growth SDR Team', rules: ['mid volume', 'crm connected', 'round-robin'] },
+  { id: 'agency', label: 'Agency Multi-Client', rules: ['multi-domain', 'territory routing', 'governance'] }
+];
+---
+<html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width" /><link rel="stylesheet" href="/styles.css" /><title>Outbound Stack Picker</title></head>
+<body><main class="container">
+<h1>Outbound Stack Picker</h1>
+<p>Pick your constraints and get a deliverability + scheduling stack profile.</p>
+<div class="grid">
+  <div class="card"><label>Team size</label><select id="team"><option>solo</option><option>2-10</option><option>11-50</option><option>50+</option></select></div>
+  <div class="card"><label>Daily send volume</label><select id="volume"><option>low volume</option><option>mid volume</option><option>high volume</option></select></div>
+  <div class="card"><label>Routing complexity</label><select id="routing"><option>simple routing</option><option>round-robin</option><option>territory routing</option></select></div>
+  <div class="card"><label>Budget</label><select id="budget"><option>starter budget</option><option>growth budget</option><option>scale budget</option></select></div>
+</div>
+<p><button id="run">Get stack profile</button></p>
+<div id="out" class="card"><em>No profile yet.</em></div>
+<script define:vars={{ profiles }}>
+const out = document.getElementById('out');
+document.getElementById('run').addEventListener('click', () => {
+  const vals = [
+    document.getElementById('volume').value,
+    document.getElementById('routing').value,
+    document.getElementById('budget').value
+  ];
+  const scored = profiles.map(p => ({...p, score: p.rules.filter(r => vals.includes(r)).length})).sort((a,b)=>b.score-a.score);
+  const top = scored[0];
+  const links = {
+    lean: '/money/best-outbound-stack-for-small-b2b-teams',
+    growth: '/money/smartlead-vs-instantly-and-calendly-vs-chili-piper',
+    agency: '/money/best-outbound-stack-for-agencies'
+  };
+  out.innerHTML = `<h3>${top.label}</h3><p>Best fit based on your routing + volume + budget signals.</p><p><a href="${links[top.id]}">Go to matching comparison page →</a></p>`;
+});
+</script>
+<footer>Micro Affiliate Factory</footer></main></body></html>
