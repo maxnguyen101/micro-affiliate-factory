@@ -66,6 +66,26 @@
 - Daily QA Sweep: `52c082c5-3f22-4c95-9a50-0e66d26dd22a`
 - Weekly Growth Planning: `4dfda425-34c8-4081-bb74-03a0725631b9`
 
+## Cluster #3 Artifacts (2026-02-09 21:15 PST)
+- Research + selection:
+  - `content/plans/cluster-3-research-shortlist.md`
+  - `content/plans/cluster-3-plan.md`
+- New tool page:
+  - `src/pages/tools/support-stack-picker.astro`
+- New money pages:
+  - `src/pages/money/best-helpdesk-live-chat-stack-for-small-teams.astro`
+  - `src/pages/money/intercom-vs-freshdesk-vs-helpscout-for-growing-support-teams.astro`
+  - `src/pages/money/best-helpdesk-stack-for-agencies-and-multi-brand-support.astro`
+- New support pages:
+  - `src/pages/support/helpdesk-sla-policy-template-for-small-teams.astro`
+  - `src/pages/support/shared-inbox-tagging-taxonomy-that-scales.astro`
+  - `src/pages/support/live-chat-escalation-rules-for-b2b-support.astro`
+  - `src/pages/support/helpdesk-migration-checklist-without-losing-context.astro`
+  - `src/pages/support/support-qa-scorecard-template-for-ticket-reviews.astro`
+- Internal linking updates from existing pages:
+  - `src/pages/index.astro`
+  - `src/pages/tools/outbound-stack-picker.astro`
+
 ## Notes
 - Site is live and gating baseline is now active.
-- Cluster #2 implementation is queued next.
+- Cluster #3 shipped with no spam tactics; criteria-first positioning maintained.

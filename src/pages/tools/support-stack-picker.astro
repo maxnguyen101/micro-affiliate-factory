@@ -1,0 +1,78 @@
+---
+const profiles = [
+  { id: 'lean', label: 'Lean Support', rules: ['small team', 'email-first', 'basic sla', 'low setup', 'lean budget'] },
+  { id: 'growth', label: 'CX Growth', rules: ['mid team', 'chat+email', 'moderate sla', 'medium setup', 'balanced budget'] },
+  { id: 'multi', label: 'Multi-brand Support', rules: ['large team', 'omnichannel', 'strict sla', 'high setup', 'premium budget'] }
+];
+---
+<html lang="en"><head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MBTT5PEJBB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MBTT5PEJBB');
+</script>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width" /><link rel="stylesheet" href="/styles.css" /><title>Support Stack Picker</title>
+<link rel="canonical" href="https://micro-affiliate-factory.howtopc2101.workers.dev/tools/support-stack-picker/" />
+</head>
+<body><main class="container">
+<h1>Support Stack Picker</h1>
+<p>Pick your constraints and get a help desk + live chat stack profile.</p>
+<div class="grid">
+  <div class="card"><label>Team size</label><select id="team"><option>small team</option><option>mid team</option><option>large team</option></select></div>
+  <div class="card"><label>Channel mix</label><select id="channel"><option>email-first</option><option>chat+email</option><option>omnichannel</option></select></div>
+  <div class="card"><label>SLA strictness</label><select id="sla"><option>basic sla</option><option>moderate sla</option><option>strict sla</option></select></div>
+  <div class="card"><label>Setup tolerance</label><select id="setup"><option>low setup</option><option>medium setup</option><option>high setup</option></select></div>
+  <div class="card"><label>Budget</label><select id="budget"><option>lean budget</option><option>balanced budget</option><option>premium budget</option></select></div>
+</div>
+<p><button id="run">Get support stack profile</button></p>
+<div id="out" class="card"><em>No profile yet.</em></div>
+
+<script define:vars={{ profiles }}>
+const out = document.getElementById('out');
+document.getElementById('run').addEventListener('click', () => {
+  const vals = [
+    document.getElementById('team').value,
+    document.getElementById('channel').value,
+    document.getElementById('sla').value,
+    document.getElementById('setup').value,
+    document.getElementById('budget').value
+  ];
+  const setupAlias = vals.map(v => v === 'low setup' ? 'low setup' : v === 'medium setup' ? 'medium setup' : v === 'high setup' ? 'high setup' : v);
+  const normalized = setupAlias.map(v => v === 'low setup' ? 'low setup' : v === 'medium setup' ? 'medium setup' : v === 'high setup' ? 'high setup' : v)
+    .map(v => v.replace('medium setup','medium setup').replace('high setup','high setup'));
+
+  const score = profiles.map(p => ({ ...p, points: p.rules.filter(r => normalized.includes(r)).length })).sort((a,b) => b.points-a.points);
+  const top = score[0];
+  const links = {
+    lean: '/money/best-helpdesk-live-chat-stack-for-small-teams',
+    growth: '/money/intercom-vs-freshdesk-vs-helpscout-for-growing-support-teams',
+    multi: '/money/best-helpdesk-stack-for-agencies-and-multi-brand-support'
+  };
+
+  out.innerHTML = `<h3>${top.label}</h3><p>Best fit based on your team shape, channel mix, and SLA constraints.</p><p><a href="${links[top.id]}">Go to matching comparison page →</a></p>`;
+  if (typeof gtag === 'function') gtag('event', 'tool_complete', { tool_name: 'support_stack_picker', profile: top.id });
+});
+</script>
+
+<section class="card"><h3>Next steps</h3><ul>
+<li><a href="/money/best-helpdesk-live-chat-stack-for-small-teams">Best stack for small teams</a></li>
+<li><a href="/money/intercom-vs-freshdesk-vs-helpscout-for-growing-support-teams">Intercom vs Freshdesk vs Help Scout</a></li>
+<li><a href="/money/best-helpdesk-stack-for-agencies-and-multi-brand-support">Best stack for agencies</a></li>
+</ul></section>
+
+<section class="card"><h3>Related guides</h3><ul><li><a href="/">Home hub</a></li><li><a href="/tools/sales-call-intelligence-picker">Call Intelligence Tool</a></li><li><a href="/tools/outbound-stack-picker">Outbound Stack Tool</a></li></ul></section>
+<footer>Micro Affiliate Factory</footer></main>
+<script>
+document.addEventListener('click', function(e){
+  const a = e.target.closest('a[href]');
+  if(!a) return;
+  const href = a.getAttribute('href') || '';
+  const isOutbound = href.startsWith('http');
+  const isMoney = href.startsWith('/money/');
+  if (typeof gtag === 'function' && isOutbound) gtag('event','affiliate_click',{link_url: href, page_path: location.pathname});
+  if (typeof gtag === 'function' && location.pathname.startsWith('/tools/') && isMoney) gtag('event','tool_to_money_click',{link_url: href, tool_path: location.pathname});
+});
+</script>
+</body></html>
