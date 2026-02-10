@@ -41,3 +41,9 @@
 - Added internal links from existing pages (`/`, `/tools/outbound-stack-picker`) into Cluster #3.
 - Verified affiliate disclosure placement above first affiliate link on all money pages.
 - Ran full gate suite (`npm run gates`): PASS (build, disclosure, citations, duplication, ymyl).
+
+## 2026-02-09 21:33 PST
+- Upgraded all required “Best * stack *” money pages to full buyer-guide format with consistent heading structure and required sections.
+- Enforced constraints: disclosure above first affiliate link, 1200+ words per required page, decision trees, 5-product/8+ criteria tables, 6-question FAQs, and internal link mix (2 support + 1 tool + 1 comparison per required page).
+- Replaced all Amazon search-based affiliate links across money pages with direct product URLs and placed them in clearly labeled “Support team essentials (Amazon links)” sections.
+- Ran `npm run gates`: PASS (build, disclosure, citations, duplication, ymyl).
